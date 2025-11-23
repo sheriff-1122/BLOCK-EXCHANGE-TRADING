@@ -4,33 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>trading home</title>
     <link rel="stylesheet" href="payment.css">
+
 
 </head>
 
 <body>
-       <h1>WELCOME TO THE TRADING HOME</h1>
-
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-        <div id="tradingview_12345"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-        <script type="text/javascript">
-            new TradingView.widget({
-                "width": 600,
-                "height": 400,
-                "symbol": "BINANCE:BTCUSDT",
-                "interval": "60",
-                "timezone": "Etc/UTC",
-                "theme": "light",
-                "style": "1",
-                "locale": "en",
-                "container_id": "tradingview_12345"
-            });
-        </script>
+    <div class="heading">
+        <h1>WELCOME TO THE TRADING HOME</h1>
+        <h2>learn to trade and earn with our trade bot </h2>
     </div>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container" style="width:100%; height:500px;">
+        <div id="tradingview_btc" style="width:100%; height:100%;"></div>
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "BINANCE:BTCUSDT",
+            "interval": "1",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "enable_publishing": false,
+            "hide_top_toolbar": false,
+            "hide_legend": false,
+            "save_image": false,
+            "container_id": "tradingview_btc"
+        });
+    </script>
     <!-- TradingView Widget END -->
+   
+
+<!-- Hamburger icon -->
+<div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+<!-- Slide Menu -->
+<div id="sideMenu" class="side-menu">
+    <a href="#">📘 Trading History</a>
+    <a href="#">⏳ Trading Hours</a>
+    <a href="#">🤖 Trading Bot</a>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<script>
+let menuOpen = false;
+
+function toggleMenu() {
+    if (menuOpen) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+function openMenu() {
+    document.getElementById("sideMenu").style.left = "0";
+    document.getElementById("overlay").style.display = "block";
+    menuOpen = true;
+}
+
+function closeMenu() {
+    document.getElementById("sideMenu").style.left = "-250px";
+    document.getElementById("overlay").style.display = "none";
+    menuOpen = false;
+}
+</script>
+
+
+
+
 
 
 

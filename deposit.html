@@ -1,96 +1,72 @@
  <!DOCTYPE html>
- <html lang="en">
- <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wallet Deposit</title>
     <link rel="stylesheet" href="deposit.css">
- </head>
- <body>
-     <div style="padding:20px; max-width:500px; margin:auto; background:#1a1a1a; color:white; border-radius:10px;">
-  <h3 style="text-align:center;">Wallet Deposit</h3>
+</head>
+<body>
 
-  <!-- Optional: Amount input for reference -->
-  <label for="walletDeposit">Amount you want to deposit (for reference):</label>
-  <input type="number" id="walletDeposit" placeholder="Enter amount" 
-         style="width:100%; padding:10px; margin:10px 0 20px 0; border-radius:5px; border:none;">
+<div class="wallet-container">
+    <h3>Wallet Deposit</h3>
 
-  <h4>Copy Wallet Address</h4>
+    <!-- Optional: Amount input for reference -->
+    <label for="walletDeposit">Amount you want to deposit (for reference):</label>
+    <input type="number" id="walletDeposit" placeholder="Enter amount">
 
-  <div id="walletList" style="display:flex; flex-direction:column; gap:15px;">
+    <h4>Copy Wallet Address</h4>
 
-    <!-- BTC Wallet -->
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>BTC Wallet</span>
-      <input type="text" id="btcWallet" value="__YOUR_BTC_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('btcWallet')" 
-              style="padding:5px 10px; background:#f7931a; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
+    <div id="walletList">
+
+        <!-- BTC Wallet -->
+        <div class="wallet-item">
+            <span>BTC Wallet</span>
+            <input type="text" id="btcWallet" value="__YOUR_BTC_ADDRESS__" readonly>
+            <button onclick="copyWallet('btcWallet')">Copy</button>
+        </div>
+
+        <!-- ETH Wallet -->
+        <div class="wallet-item">
+            <span>ETH Wallet</span>
+            <input type="text" id="ethWallet" value="__YOUR_ETH_ADDRESS__" readonly>
+            <button onclick="copyWallet('ethWallet')">Copy</button>
+        </div>
+
+        <!-- USDT Wallet -->
+        <div class="wallet-item">
+            <span>USDT Wallet</span>
+            <input type="text" id="usdtWallet" value="__YOUR_USDT_ADDRESS__" readonly>
+            <button onclick="copyWallet('usdtWallet')">Copy</button>
+        </div>
+
+        <!-- LTC Wallet -->
+        <div class="wallet-item">
+            <span>LTC Wallet</span>
+            <input type="text" id="ltcWallet" value="__YOUR_LTC_ADDRESS__" readonly>
+            <button onclick="copyWallet('ltcWallet')">Copy</button>
+        </div>
+
+        <!-- XRP Wallet -->
+        <div class="wallet-item">
+            <span>XRP Wallet</span>
+            <input type="text" id="xrpWallet" value="__YOUR_XRP_ADDRESS__" readonly>
+            <button onclick="copyWallet('xrpWallet')">Copy</button>
+        </div>
+
+        <!-- BCH Wallet -->
+        <div class="wallet-item">
+            <span>BCH Wallet</span>
+            <input type="text" id="bchWallet" value="__YOUR_BCH_ADDRESS__" readonly>
+            <button onclick="copyWallet('bchWallet')">Copy</button>
+        </div>
+
     </div>
 
-    <!-- ETH Wallet -->
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>ETH Wallet</span>
-      <input type="text" id="ethWallet" value="__YOUR_ETH_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('ethWallet')" 
-              style="padding:5px 10px; background:#627eea; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
-    </div>
+    <p class="info-text">Click any copy button to copy the wallet address</p>
 
-    <!-- USDT Wallet -->
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>USDT Wallet</span>
-      <input type="text" id="usdtWallet" value="__YOUR_USDT_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('usdtWallet')" 
-              style="padding:5px 10px; background:#26a17b; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
-    </div>
-
-    <!-- Add more wallets here -->
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>LTC Wallet</span>
-      <input type="text" id="ltcWallet" value="__YOUR_LTC_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('ltcWallet')" 
-              style="padding:5px 10px; background:#b8b8b8; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
-    </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>XRP Wallet</span>
-      <input type="text" id="xrpWallet" value="__YOUR_XRP_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('xrpWallet')" 
-              style="padding:5px 10px; background:#00aae4; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
-    </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px; border-radius:5px;">
-      <span>BCH Wallet</span>
-      <input type="text" id="bchWallet" value="__YOUR_BCH_ADDRESS__" readonly 
-             style="flex:1; margin:0 10px; padding:5px; border-radius:5px; border:none; background:#333; color:white;">
-      <button onclick="copyWallet('bchWallet')" 
-              style="padding:5px 10px; background:#8dc351; border:none; color:white; border-radius:5px; cursor:pointer;">
-        Copy
-      </button>
-    </div>
-
-  </div>
-
-  <p style="color:yellow; margin-top:20px; text-align:center;">Click any copy button to copy the wallet address</p>
-
-  <!-- Disabled Deposit Button -->
-  <button style="width:100%; padding:10px; background:#555; border:none; color:white; border-radius:5px; cursor:not-allowed;">
-    Deposit
-  </button>
+    <!-- Disabled Deposit Button -->
+    <button class="deposit-btn">Deposit</button>
 </div>
 
 <script>
@@ -102,7 +78,11 @@ function copyWallet(walletId) {
     alert("Wallet address copied: " + walletInput.value);
 }
 </script>
- </body>
- </html>
+
+</body>
+</html>
+
+
+ 
 
 

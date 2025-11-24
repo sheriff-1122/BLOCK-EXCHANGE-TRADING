@@ -1,86 +1,96 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet Deposit</title>
     <link rel="stylesheet" href="deposit.css">
 </head>
+
 <body>
 
-<div class="wallet-container">
-    <h3>Wallet Deposit</h3>
+    <div class="wallet-container">
+        <h3>Wallet Deposit</h3>
 
-    <!-- Optional: Amount input for reference -->
-    <label for="walletDeposit">Amount you want to deposit (for reference):</label>
-    <input type="number" id="walletDeposit" placeholder="Enter amount">
+        <label for="walletDeposit">Amount you want to deposit (for reference):</label>
+        <input type="text" id="walletDeposit" placeholder="Enter amount"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-    <h4>Copy Wallet Address</h4>
 
-    <div id="walletList">
+        <h4>Copy Wallet Address</h4>
 
-        <!-- BTC Wallet -->
-        <div class="wallet-item">
-            <span>BTC Wallet</span>
-            <input type="text" id="btcWallet" value="__YOUR_BTC_ADDRESS__" readonly>
-            <button onclick="copyWallet('btcWallet')">Copy</button>
+        <div id="walletList">
+
+            <!-- BTC Wallet -->
+            <div class="wallet-item">
+                <span>BTC Wallet</span>
+                <input type="text" id="btcWallet" value="__YOUR_BTC_ADDRESS__" readonly>
+                <button onclick="copyWallet('btcWallet')">Copy</button>
+            </div>
+
+            <!-- ETH Wallet -->
+            <div class="wallet-item">
+                <span>ETH Wallet</span>
+                <input type="text" id="ethWallet" value="__YOUR_ETH_ADDRESS__" readonly>
+                <button onclick="copyWallet('ethWallet')">Copy</button>
+            </div>
+
+            <!-- USDT Wallet -->
+            <div class="wallet-item">
+                <span>USDT Wallet</span>
+                <input type="text" id="usdtWallet" value="__YOUR_USDT_ADDRESS__" readonly>
+                <button onclick="copyWallet('usdtWallet')">Copy</button>
+            </div>
+
+            <!-- LTC Wallet -->
+            <div class="wallet-item">
+                <span>LTC Wallet</span>
+                <input type="text" id="ltcWallet" value="__YOUR_LTC_ADDRESS__" readonly>
+                <button onclick="copyWallet('ltcWallet')">Copy</button>
+            </div>
+
+            <!-- XRP Wallet -->
+            <div class="wallet-item">
+                <span>XRP Wallet</span>
+                <input type="text" id="xrpWallet" value="__YOUR_XRP_ADDRESS__" readonly>
+                <button onclick="copyWallet('xrpWallet')">Copy</button>
+            </div>
+
+            <!-- BCH Wallet -->
+            <div class="wallet-item">
+                <span>BCH Wallet</span>
+                <input type="text" id="bchWallet" value="__YOUR_BCH_ADDRESS__" readonly>
+                <button onclick="copyWallet('bchWallet')">Copy</button>
+            </div>
+
         </div>
 
-        <!-- ETH Wallet -->
-        <div class="wallet-item">
-            <span>ETH Wallet</span>
-            <input type="text" id="ethWallet" value="__YOUR_ETH_ADDRESS__" readonly>
-            <button onclick="copyWallet('ethWallet')">Copy</button>
+        <p class="info-text">Click any copy button to copy the wallet address</p>
+
+        <div id="customPopup" class="popup">
+            <p>Address copied!<br>Minimum amount to deposit is $50</p>
         </div>
 
-        <!-- USDT Wallet -->
-        <div class="wallet-item">
-            <span>USDT Wallet</span>
-            <input type="text" id="usdtWallet" value="__YOUR_USDT_ADDRESS__" readonly>
-            <button onclick="copyWallet('usdtWallet')">Copy</button>
-        </div>
 
-        <!-- LTC Wallet -->
-        <div class="wallet-item">
-            <span>LTC Wallet</span>
-            <input type="text" id="ltcWallet" value="__YOUR_LTC_ADDRESS__" readonly>
-            <button onclick="copyWallet('ltcWallet')">Copy</button>
-        </div>
+        <script>
+            function copyWallet(walletId) {
+                const walletInput = document.getElementById(walletId);
 
-        <!-- XRP Wallet -->
-        <div class="wallet-item">
-            <span>XRP Wallet</span>
-            <input type="text" id="xrpWallet" value="__YOUR_XRP_ADDRESS__" readonly>
-            <button onclick="copyWallet('xrpWallet')">Copy</button>
-        </div>
+                navigator.clipboard.writeText(walletInput.value);
 
-        <!-- BCH Wallet -->
-        <div class="wallet-item">
-            <span>BCH Wallet</span>
-            <input type="text" id="bchWallet" value="__YOUR_BCH_ADDRESS__" readonly>
-            <button onclick="copyWallet('bchWallet')">Copy</button>
-        </div>
+                const popup = document.getElementById("customPopup");
+                popup.style.display = "block";
 
-    </div>
-
-    <p class="info-text">Click any copy button to copy the wallet address</p>
+                setTimeout(() => {
+                    popup.style.display = "none";
+                }, 2500); // hides after 2.5 seconds
+            }
+        </script>
 
 
 
-<script>
-function copyWallet(walletId) {
-    const walletInput = document.getElementById(walletId);
-    walletInput.select();
-    walletInput.setSelectionRange(0, 99999); // mobile support
-    navigator.clipboard.writeText(walletInput.value);
-    alert("Wallet address copied: " + walletInput.value);
-}
-</script>
 
 </body>
+
 </html>
-
-
- 
-
-

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Block Exchange Trading</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Block Exchange Trading</h1>
+        <p>Login to Your Account</p>
+    </div>
+
+    <div class="container">
+        <div class="form-box">
+            <h2>Login</h2>
+
+            <input type="email" id="loginEmail" placeholder="Enter your email" />
+            <input type="password" id="loginPassword" placeholder="Enter your password" />
+
+            <button onclick="loginAccount()">Login</button>
+
+            <p style="text-align:center; margin-top:10px;">
+                Don't have an account? <a href="index.html">Create Account</a>
+            </p>
+        </div>
+    </div>
+     
+
+    <script> 
+        function loginAccount() {
+            let enteredEmail = document.getElementById("loginEmail").value;
+            let enteredPassword = document.getElementById("loginPassword").value;
+
+            let savedEmail = localStorage.getItem("userEmail");
+            let savedPassword = localStorage.getItem("userPassword");
+
+            let statusBox = document.getElementById("statusBox");
+
+            if (!savedEmail || !savedPassword) {
+                statusBox.innerText = "No account found. Please create an account first.";
+                return;
+            }
+
+            if (enteredEmail === savedEmail && enteredPassword === savedPassword) {
+                localStorage.setItem("loggedIn", "true");
+                window.location.href = "payment.html";
+            } else {
+                statusBox.innerText = "Incorrect email or password.";
+            }
+        }
+    </script>
+    <p id="statusBox" style="color:#ff9900; text-align:center; margin-top:10px;"></p>
+
+
+</body>
+
+</html>

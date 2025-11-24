@@ -1,181 +1,124 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>trading home</title>
+    <title>Trading Home</title>
     <link rel="stylesheet" href="payment.css">
-
-
 </head>
-
 <body>
-    <div class="heading">
-        <h1>WELCOME TO THE TRADING HOME</h1>
-        <h2>learn to trade and earn with our trade bot </h2>
-    </div>
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container" style="width:100%; height:500px;">
-        <div id="tradingview_btc" style="width:100%; height:100%;"></div>
-    </div>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-        new TradingView.widget({
-            "autosize": true,
-            "symbol": "BINANCE:BTCUSDT",
-            "interval": "1",
-            "timezone": "Etc/UTC",
-            "theme": "light",
-            "style": "1",
-            "locale": "en",
-            "enable_publishing": false,
-            "hide_top_toolbar": false,
-            "hide_legend": false,
-            "save_image": false,
-            "container_id": "tradingview_btc"
-        });
-    </script>
-    <!-- TradingView Widget END -->
+<div class="heading">
+    <h1>WELCOME TO THE TRADING HOME</h1>
+    <h2>Learn to trade and earn with our trade bot</h2>
+</div>
 
+<!-- TradingView Widget -->
+<div class="tradingview-widget-container" style="width:100%; height:500px;">
+    <div id="tradingview_btc" style="width:100%; height:100%;"></div>
+</div>
 
-    <!-- Hamburger icon -->
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+    new TradingView.widget({
+        "autosize": true,
+        "symbol": "BINANCE:BTCUSDT",
+        "interval": "1",
+        "timezone": "Etc/UTC",
+        "theme": "light",
+        "style": "1",
+        "locale": "en",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "hide_legend": false,
+        "save_image": false,
+        "container_id": "tradingview_btc"
+    });
+</script>
 
-    <!-- Slide Menu -->
-    <div id="sideMenu" class="side-menu">
-        <a href="#">📘 Trading History</a>
-        <a href="#">⏳ Trading Hours</a>
-        <a href="#">🤖 Trading Bot</a>
-    </div>
+<!-- Hamburger Menu -->
+<div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+<div id="sideMenu" class="side-menu">
+    <a href="#">📘 Trading History</a>
+    <a href="#">⏳ Trading Hours</a>
+    <a href="#">🤖 Trading Bot</a>
+</div>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-    <!-- Overlay -->
-    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<script>
+let menuOpen = false;
 
-    <script>
-        let menuOpen = false;
+function toggleMenu() {
+    if (menuOpen) { closeMenu(); } else { openMenu(); }
+}
+function openMenu() {
+    document.getElementById("sideMenu").style.left = "0";
+    document.getElementById("overlay").style.display = "block";
+    menuOpen = true;
+}
+function closeMenu() {
+    document.getElementById("sideMenu").style.left = "-250px";
+    document.getElementById("overlay").style.display = "none";
+    menuOpen = false;
+}
+</script>
 
-        function toggleMenu() {
-            if (menuOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        }
+<!-- Deposit & Trade Panel -->
+<div class="trading-panel" style="padding:20px; background:#1a1a1a; color:white; max-width:600px; margin:auto;">
+    <h3>Deposit & Trade</h3>
 
-        function openMenu() {
-            document.getElementById("sideMenu").style.left = "0";
-            document.getElementById("overlay").style.display = "block";
-            menuOpen = true;
-        }
+    <!-- Deposit button only -->
+    <button onclick="goToDeposit()"
+        style="width:100%; padding:10px; background:#ff9900; border:none; color:white; border-radius:5px; cursor:pointer;">
+        Deposit
+    </button>
 
-        function closeMenu() {
-            document.getElementById("sideMenu").style.left = "-250px";
-            document.getElementById("overlay").style.display = "none";
-            menuOpen = false;
-        }
-    </script>
-    <div class="trading-panel" style="padding:20px; background:#1a1a1a; color:white; max-width:600px; margin:auto;">
-        <h3>Deposit & Trade</h3>
-
-        <!-- Deposit button -->
-        <div id="depositSection">
-            <button onclick="goToDeposit()"
-                style="width:100%; padding:10px; background:#007bff; border:none; color:white; border-radius:5px; cursor:pointer;">Deposit</button>
-        </div>
-
-        <!-- Deposit success message -->
-        <p id="depositMessage" style="color:yellow; display:none; margin-top:10px;">Deposit Successful! Wallet used:
-            <span id="walletUsed"></span></p>
-
-        <!-- Trade section (hidden initially) -->
-        <div id="tradeControls" style="display:none; margin-top:15px;">
-            <p>Current Trade Amount: $<span id="tradeAmount">0</span></p>
-            <input type="number" id="tradeInput" placeholder="Enter amount to trade"
-                style="width:100%; padding:8px; margin:5px 0;">
-            <button onclick="trade()"
-                style="width:100%; padding:10px; background:#28a745; border:none; color:white; border-radius:5px; cursor:pointer;">Trade</button>
-        </div>
-
-        <!-- Withdrawable balance (hidden initially) -->
-        <div id="withdrawSection" style="margin-top:15px; display:none;">
-            <h3>Withdrawable Balance</h3>
-            <p>$<span id="withdrawAmount">0</span></p>
-        </div>
+    <!-- Trade section (optional, can show after deposit) -->
+    <div id="tradeControls" style="display:none; margin-top:15px;">
+        <p>Current Trade Amount: $<span id="tradeAmount">0</span></p>
+        <input type="number" id="tradeInput" placeholder="Enter amount to trade"
+            style="width:100%; padding:8px; margin:5px 0;">
+        <button onclick="trade()"
+            style="width:100%; padding:10px; background:#28a745; border:none; color:white; border-radius:5px; cursor:pointer;">
+            Trade
+        </button>
     </div>
 
-    <script>
-        let totalBalance = 0;
-        let tradeAmount = 0;
+    <!-- Withdrawable balance -->
+    <div id="withdrawSection" style="margin-top:15px; display:none;">
+        <h3>Withdrawable Balance</h3>
+        <p>$<span id="withdrawAmount">0</span></p>
+    </div>
+</div>
 
-        window.onload = function () {
-            const storedBalance = localStorage.getItem("totalBalance");
-            const wallet = localStorage.getItem("lastWallet");
-            if (storedBalance) {
-                totalBalance = Number(storedBalance);
-                document.getElementById("depositSection").style.display = "none";
-                document.getElementById("depositMessage").style.display = "block";
-                document.getElementById("walletUsed").innerText = wallet || "N/A";
-                document.getElementById("tradeControls").style.display = "block";
-            }
-        }
+<script>
+function goToDeposit() {
+    window.location.href = "deposit.html"; // takes user to deposit page
+}
 
-        function goToDeposit() {
-            window.location.href = "deposit.html";
-        }
+// Optional trade logic
+let totalBalance = 0;
+let tradeAmount = 0;
 
-        function trade() {
-            const amount = Number(document.getElementById("tradeInput").value);
-            if (amount <= 0) {
-                alert("Enter an amount greater than 0");
-                return;
-            }
-            if (amount > totalBalance - tradeAmount) {
-                alert("You cannot trade more than your available balance");
-                return;
-            }
+function trade() {
+    const amount = Number(document.getElementById("tradeInput").value);
+    if(amount <= 0) { alert("Enter an amount greater than 0"); return; }
+    if(amount > totalBalance - tradeAmount) { alert("You cannot trade more than your available balance"); return; }
 
-            tradeAmount += amount;
-            updateDisplay();
-        }
+    tradeAmount += amount;
+    updateDisplay();
+}
 
-        function updateDisplay() {
-            document.getElementById("tradeAmount").innerText = tradeAmount;
-
-            const withdrawableBalance = totalBalance - tradeAmount;
-            const withdrawSection = document.getElementById("withdrawSection");
-
-            if (withdrawableBalance > 0) {
-                withdrawSection.style.display = "block";
-                document.getElementById("withdrawAmount").innerText = withdrawableBalance;
-            }
-        }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function updateDisplay() {
+    document.getElementById("tradeAmount").innerText = tradeAmount;
+    const withdrawableBalance = totalBalance - tradeAmount;
+    const withdrawSection = document.getElementById("withdrawSection");
+    if(withdrawableBalance > 0) {
+        withdrawSection.style.display = "block";
+        document.getElementById("withdrawAmount").innerText = withdrawableBalance;
+    }
+}
+</script>
 
 </body>
-
 </html>

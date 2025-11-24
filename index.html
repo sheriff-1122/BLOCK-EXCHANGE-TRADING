@@ -17,59 +17,50 @@
 
     <div class="container">
 
-        <!-- ACCOUNT FORM -->
         <div class="form-box">
             <h2>Create Account</h2>
             <p id="statusMessage" style="text-align:center; color:#ff9900; font-weight:bold;"></p>
+
             <input type="text" id="name" placeholder="Enter your name" />
             <input type="email" id="email" placeholder="Enter your email" />
-           
+            <input type="password" id="password" placeholder="Create password" />
 
             <button onclick="createAccount()">Create Account</button>
 
+            <p style="text-align:center; margin-top:10px;">
+                Already have an account? <a href="login.html">Login</a>
+            </p>
         </div>
 
-        <!-- ABOUT, MISSION, CONTACT -->
-        <div class="info-section">
-            <h2>About Us</h2>
-            <p>
-                Block Exchange Trading provides secure and modern digital trading
-                solutions designed to help users grow financially.
-            </p>
-
-            <h2>Our Mission</h2>
-            <p>
-                To deliver transparent, easy-to-use, and effective trading tools
-                for everyone.
-            </p>
-
-            <h2>Contact Information</h2>
-            <p><strong>Email:</strong> support@blockexchange.com</p>
-            <p><strong>Phone:</strong> +234 800 000 0000</p>
-            <p><strong>Office:</strong> Lagos, Nigeria</p>
-        </div>
         <script>
             function createAccount() {
-                let name = document.getElementById("name").value;
-                let email = document.getElementById("email").value;
+                let name = document.getElementById("name").value.trim();
+                let email = document.getElementById("email").value.trim();
+                let password = document.getElementById("password").value.trim();
+                let statusBox = document.getElementById("statusMessage");
 
-                if (name.trim() === "" || email.trim() === "") {
-                    document.getElementById("statusMessage").innerText =
-                        "Please enter your name and email.";
+                // Check empty fields
+                if (!name || !email || !password) {
+                    statusBox.innerText = "Please fill in all fields (name, email, password).";
                     return;
                 }
 
+                // Save account info
                 localStorage.setItem("userName", name);
                 localStorage.setItem("userEmail", email);
+                localStorage.setItem("userPassword", password);
 
-                document.getElementById("statusMessage").innerText =
-                    "Block Exchange Trading - Account Created Successfully!";
+                // Log them in automatically
+                localStorage.setItem("loggedIn", "true");
 
-                // Redirect after 2 seconds
-                setTimeout(function () {
-                    window.location.href = "payment.html"; // change to your next page name
+                // Show success message
+                statusBox.style.color = "#ff9900s";
+                statusBox.innerText = "Account Created Successfully!";
+
+                // Redirect to payment page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "payment.html";
                 }, 2000);
-
             }
         </script>
 
